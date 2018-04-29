@@ -21,6 +21,10 @@ export class HomePage {
     });
   }
 
+  orderAdmin() {
+    this.navCtrl.push("ProductosPage");
+  }
+
   orderSpecial() {
     this.api.storage.get(new Date().toDateString() + "-pedido").then((pedido) => {
       console.log(pedido);

@@ -18,7 +18,7 @@
     <img [src]="api.url + 'img/menu-especial.jpg'" style="width:100%" onerror="this.style.display = 'none'" alt="">
   </div>
   <ion-fab bottom right>
-    <button ion-fab color="secondary">
+    <button ion-fab color="secondary" (click)="orderAdmin()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

@@ -14,7 +14,8 @@ export class Api {
   password: string;
   token: string;
   // url: string = "http://seguimiento.duflosa.com:8080/pedidos/public/";
-  url: string = "http://localhost/newton/public/";
+  // url: string = "http://localhost/newton/public/";
+  url: string = "http://newton.eycproveedores.com/eyc/public/";
   user: any = null;
   carrito = [];
   resolve;

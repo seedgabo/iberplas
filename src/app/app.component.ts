@@ -15,7 +15,7 @@ import moment from "moment";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any;
 
   pages: Array<{ title: string; component: any }>;
 
@@ -27,10 +27,7 @@ export class MyApp {
     public api: Api
   ) {
     this.initializeApp();
-    this.pages = [
-      { title: "Home", component: HomePage }
-      //  ,{ title: "List", component: ListPage }
-    ];
+    this.pages = [{ title: "Home", component: HomePage }, { title: "Mis Pedidos", component: ListPage }];
   }
 
   openPage(page) {
@@ -60,6 +57,8 @@ export class MyApp {
     this.api.ready.then(() => {
       if (!this.api.user) {
         this.nav.setRoot(LoginPage);
+      } else {
+        this.nav.setRoot(HomePage);
       }
     });
   }

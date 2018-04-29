@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Productos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="container">
+  <ion-list>
+    <ion-item *ngFor="let prod of productos">
+      <ion-thumbnail item-left>
+        <img [src]="prod.image_url" [alt]="prod.name">
+      </ion-thumbnail>
+      <p text-center ion-text color="primary">{{prod.name}}</p>
+      <div text-center>
+        <button ion-button small clear round icon-only (click)="decrement(prod)">
+          <ion-icon name="remove-circle"></ion-icon>
+        </button>
+        <input readonly item-right type="number" class="orden" [(ngModel)]="prod.cantidad_pedidos">
+        <button ion-button round clear small icon-only (click)="increment(prod)">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button clear color="dark" full navPop>Atrás</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="order()">Ordenar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
