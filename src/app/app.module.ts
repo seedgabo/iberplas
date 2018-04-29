@@ -14,12 +14,14 @@ import { IonicStorageModule } from "@ionic/storage";
 import { HttpModule } from "@angular/http";
 import { Push } from "@ionic-native/push";
 import { CodePush } from "@ionic-native/code-push";
+import { ProfilePage } from "../pages/profile/profile";
+import { VerPedidoPage } from "../pages/ver-pedido/ver-pedido";
 
 @NgModule({
-  declarations: [MyApp, HomePage, LoginPage, ListPage],
+  declarations: [MyApp, HomePage, LoginPage, ListPage, VerPedidoPage, ProfilePage],
   imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp), IonicStorageModule.forRoot()],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, LoginPage, ListPage],
+  entryComponents: [MyApp, HomePage, LoginPage, ListPage, VerPedidoPage, ProfilePage],
   providers: [StatusBar, SplashScreen, CodePush, Push, { provide: ErrorHandler, useClass: IonicErrorHandler }, Api]
 })
 export class AppModule {}

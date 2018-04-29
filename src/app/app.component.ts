@@ -85,9 +85,6 @@ export class MyApp {
     this.api.carrito = [];
     this.api.saveUser(null);
     this.api.storage.clear();
-    this.api.tipo = "";
-    this.api.categorias = [44, 27, 46, 47, 48, 49, 26, 45, 50, 51, 52, 53];
-    this.api.index = 0;
     this.nav.setRoot(LoginPage);
   }
 }
