@@ -8,32 +8,15 @@ import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class Api {
+  pushData: {};
   productos: any = [];
   username: string;
   password: string;
   token: string;
   // url: string = "http://seguimiento.duflosa.com:8080/pedidos/public/";
   url: string = "http://localhost/newton/public/";
-  user: any = { token: null };
-  pushData: any;
+  user: any = null;
   carrito = [];
-  vista = "grid";
-  tipo = "";
-  categorias = [44, 27, 46, 47, 48, 49, 26, 45, 50, 51, 52, 53];
-  index = 0;
-  entidad_ids = [3, 4, 18, 20, 22, 23, 35];
-  restricted_categorias = [26, 45, 50, 61];
-  user_selected: any = undefined;
-  cupon: any = undefined;
-  pedidos_ayer = {
-    almuerzo: null,
-    comida: null,
-    cena: null
-  };
-  pedido_comedor = {
-    entidad: null,
-    tipo: null
-  };
   resolve;
   ready = new Promise((resolve) => {
     this.resolve = resolve;
@@ -75,13 +58,6 @@ export class Api {
           }
         );
     });
-  }
-
-  setProgramacion(programa) {
-    if (programa != undefined) {
-      if (programa.categorias != "") this.categorias = programa.categorias;
-      if (programa.productos != "") this.productos = programa.productos;
-    }
   }
 
   get(uri) {
@@ -129,39 +105,6 @@ export class Api {
             return reject(this.handleData(error));
           }
         );
-    });
-  }
-
-  addToCart(producto) {
-    var index = this.carrito.findIndex((item) => {
-      return item.id == producto.id;
-    });
-    if (index == -1) {
-      this.carrito.push(producto);
-    } else {
-      this.carrito[index].cantidad_pedidos = producto.cantidad_pedidos;
-    }
-    this.storage.set("carrito", JSON.stringify(this.carrito));
-  }
-
-  removeFromCart(producto) {
-    var index = this.carrito.findIndex((item) => {
-      return item.id == producto.id;
-    });
-    if (index == -1) {
-      return false;
-    } else {
-      this.carrito.splice(index);
-      this.storage.set("carrito", JSON.stringify(this.carrito));
-      return true;
-    }
-  }
-
-  clearCarrito() {
-    return new Promise((resolve, reject) => {
-      this.carrito = [];
-      this.storage.set("carrito", JSON.stringify(this.carrito));
-      resolve(true);
     });
   }
 
