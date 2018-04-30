@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Menu Especial | Viernes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="container" text-center>
+  <div>
+    <img [src]="api.url + 'img/menu-especial.jpg'" style="width:100%" onerror="this.style.display = 'none'" alt="">
+  </div>
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <button ion-button full [disabled]="loading || !canOrder" color="large" (click)="orderSpecial()">
+    {{canOrder ? 'Ordenar' : 'Ya Pedido' }}
+  </button>
+</ion-content>

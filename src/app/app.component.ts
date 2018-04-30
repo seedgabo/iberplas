@@ -27,7 +27,11 @@ export class MyApp {
     public api: Api
   ) {
     this.initializeApp();
-    this.pages = [{ title: "Home", component: HomePage }, { title: "Mis Pedidos", component: ListPage }];
+    this.pages = [
+      { title: "Home", component: HomePage },
+      { title: "Mis Pedidos", component: ListPage },
+      { title: "Menu Especial", component: "EspecialPage" }
+    ];
   }
 
   openPage(page) {

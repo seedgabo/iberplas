@@ -11,12 +11,7 @@
 <ion-content class="container">
   <img [src]="api.url + 'img/menu.jpg'" style="width:100%" onerror="this.style.display = 'none'" alt="">
 
-  <div (click)="orderSpecial()">
-    <h2 text-center>
-      Menú Especial
-    </h2>
-    <img [src]="api.url + 'img/menu-especial.jpg'" style="width:100%" onerror="this.style.display = 'none'" alt="">
-  </div>
+
   <ion-fab bottom right>
     <button ion-fab color="secondary" (click)="orderAdmin()">
       <ion-icon name="add"></ion-icon>
