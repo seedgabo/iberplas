@@ -86,4 +86,10 @@
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <engine name="android" spec="7.0.0" />
+    <platform name="android">
+        <preference name="CodePushDeploymentKey" value="ryGd6morrtLCuD2s9UVdMg0oBsruc0e4a0a6-2be5-4604-bcc1-c0b2c1387dd2" />
+    </platform>
+    <platform name="ios">
+        <preference name="CodePushDeploymentKey" value="C2WeVlgu_sBLu71Ax85T3dSgjHmoc0e4a0a6-2be5-4604-bcc1-c0b2c1387dd2" />
+    </platform>
 </widget>
