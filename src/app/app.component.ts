@@ -30,7 +30,7 @@ export class MyApp {
     this.pages = [
       { title: "Home", component: HomePage },
       { title: "Mis Pedidos", component: ListPage },
-      { title: "Menu Especial", component: "EspecialPage" }
+      { title: "Menu Especial (Viernes)", component: "EspecialPage" }
     ];
   }
 
