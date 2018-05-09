@@ -10,7 +10,7 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "release-cordova": "ionic cordova build android --prod && code-push release-cordova iberplast android -d android --mandatory"
+    "release-android": "ionic cordova build android --prod && code-push release-cordova iberplast android -d android --mandatory"
   },
   "dependencies": {
     "@angular/animations": "5.2.10",
