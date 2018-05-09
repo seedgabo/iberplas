@@ -11,6 +11,7 @@ import * as moment from "moment";
 })
 export class HomePage {
   canOrder = false;
+  rand = Math.random() * 1000;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api, public alert: AlertController) {}
 
   ionViewDidLoad() {

@@ -10,6 +10,7 @@ import moment from "moment";
 export class EspecialPage {
   loading = true;
   canOrder = true;
+  rand = Math.random() * 1000;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

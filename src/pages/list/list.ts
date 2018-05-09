@@ -10,6 +10,7 @@ moment.lang("es-us");
 })
 export class ListPage {
   orders: any = [];
+  rand = Math.random() * 1000;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {}
 
   ionViewDidLoad() {

@@ -9,7 +9,9 @@
 
 
 <ion-content class="container">
-  <img [src]="api.url + 'img/menu.jpg'" style="width:100%" onerror="this.style.display = 'none'" alt="">
+  <img [src]="api.url + 'img/menu.jpg?rand=' + rand" style="width:100%" onerror="this.style.display = 'none'" alt="">
+
+  <img [src]="api.url + 'img/menu2.jpg?rand=' + rand" style="width:100%" onerror="this.style.display = 'none'" alt="">
 
 
   <ion-fab bottom right>
