@@ -8,6 +8,7 @@ import { Api } from "../../providers/Api";
 })
 export class ProductosPage {
   productos: any = [];
+  categorias = { null: { productos: [], show: false } };
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -19,12 +20,9 @@ export class ProductosPage {
   ionViewDidLoad() {
     this.api.ready.then(() => {
       this.api
-        .get("productos?where[active]=1&limit=150")
+        .get("productos?with[]=categoria&where[active]=1&limit=150")
         .then((resp) => {
-          this.productos = resp;
-          this.productos.forEach((prod) => {
-            prod.cantidad_pedidos = 0;
-          });
+          this.prepareProducts(resp);
         })
         .catch((err) => {
           console.error(err);
@@ -66,6 +64,16 @@ export class ProductosPage {
       .present();
   }
 
+  total() {
+    var sum = 0;
+    this.productos.forEach((element) => {
+      if (element.cantidad_pedidos) {
+        sum += parseFloat(element.cantidad_pedidos) * parseFloat(element.precio);
+      }
+    });
+    return sum;
+  }
+
   _order(direccion_pedido) {
     var loading = this.loading.create({ content: "Creando Pedido" });
     var items = [];
@@ -103,5 +111,21 @@ export class ProductosPage {
         loading.dismiss();
         this.alert.create({ title: "Error en  Pedido", buttons: ["Ok"] }).present();
       });
+  }
+
+  prepareProducts(products) {
+    this.productos = products;
+    this.productos.forEach((prod) => {
+      prod.cantidad_pedidos = 0;
+
+      if (!prod.categoria) {
+        this.categorias.null.productos.push(prod);
+      } else {
+        if (!this.categorias[prod.categoria.name]) {
+          this.categorias[prod.categoria.name] = { categoria: prod.categoria, productos: [], show: false };
+        }
+        this.categorias[prod.categoria.name].productos.push(prod);
+      }
+    });
   }
 }
