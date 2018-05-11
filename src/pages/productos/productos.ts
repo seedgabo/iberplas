@@ -8,7 +8,8 @@ import { Api } from "../../providers/Api";
 })
 export class ProductosPage {
   productos: any = [];
-  categorias = { null: { productos: [], show: false } };
+  categorias = { "no categorizado": { productos: [], show: false } };
+  ready = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,6 +26,11 @@ export class ProductosPage {
           this.prepareProducts(resp);
         })
         .catch((err) => {
+          this.alert
+            .create({
+              message: JSON.stringify(err)
+            })
+            .present();
           console.error(err);
         });
     });
@@ -119,7 +125,7 @@ export class ProductosPage {
       prod.cantidad_pedidos = 0;
 
       if (!prod.categoria) {
-        this.categorias.null.productos.push(prod);
+        this.categorias["no categorizado"].productos.push(prod);
       } else {
         if (!this.categorias[prod.categoria.name]) {
           this.categorias[prod.categoria.name] = { categoria: prod.categoria, productos: [], show: false };
@@ -127,5 +133,8 @@ export class ProductosPage {
         this.categorias[prod.categoria.name].productos.push(prod);
       }
     });
+    setTimeout(() => {
+      this.ready = true;
+    }, 300);
   }
 }

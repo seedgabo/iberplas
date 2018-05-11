@@ -8,9 +8,11 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="container">
-  <ion-list>
+  <div text-center *ngIf="!ready">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-list *ngIf="ready">
     <div *ngFor="let categoria of categorias | keys">
       <ion-list-header color="light">
         <ion-icon color="primary" name="cart" item-left></ion-icon>
