@@ -27,17 +27,26 @@ export class MyApp {
     public api: Api
   ) {
     this.initializeApp();
-    this.pages = [
-      { title: "Home", component: HomePage },
-      { title: "Mis Pedidos", component: ListPage },
-      { title: "Menu Especial (Viernes)", component: "EspecialPage" }
-    ];
+    this.pages = [{ title: "Home", component: HomePage }, { title: "Mis Pedidos", component: ListPage }];
+    if (this.canOrdeEspecial()) {
+      this.pages.push({ title: "Menu Especial (Viernes)", component: "EspecialPage" });
+    }
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  canOrdeEspecial() {
+    var date = moment()
+      .startOf("week")
+      .day(5)
+      .hour(15)
+      .minute(0)
+      .second(0);
+    return moment() < date;
   }
 
   initializeApp() {

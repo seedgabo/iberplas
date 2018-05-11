@@ -29,6 +29,10 @@ export class HomePage {
     });
   }
 
+  ionViewWillEnter() {
+    this.rand = Math.random() * 1000;
+  }
+
   orderAdmin() {
     this.navCtrl.push("ProductosPage");
   }
