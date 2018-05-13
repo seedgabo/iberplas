@@ -10,6 +10,7 @@ export class ProductosPage {
   productos: any = [];
   categorias = { "no categorizado": { productos: [], show: false } };
   ready = false;
+  query = "";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,7 +24,8 @@ export class ProductosPage {
       this.api
         .get("productos?with[]=categoria&where[active]=1&limit=150")
         .then((resp) => {
-          this.prepareProducts(resp);
+          this.productos = resp;
+          this.filter();
         })
         .catch((err) => {
           this.alert
@@ -119,18 +121,24 @@ export class ProductosPage {
       });
   }
 
-  prepareProducts(products) {
-    this.productos = products;
+  filter() {
+    this.ready = false;
+    this.categorias = { "no categorizado": { productos: [], show: false } };
+    var f = this.query.toLowerCase();
     this.productos.forEach((prod) => {
       prod.cantidad_pedidos = 0;
-
-      if (!prod.categoria) {
-        this.categorias["no categorizado"].productos.push(prod);
-      } else {
-        if (!this.categorias[prod.categoria.name]) {
-          this.categorias[prod.categoria.name] = { categoria: prod.categoria, productos: [], show: false };
+      if (
+        f.length == 0 ||
+        (prod.name.toLowerCase().indexOf(f) > -1 || (prod.description && prod.description.toLowerCase().indexOf(f) > -1))
+      ) {
+        if (!prod.categoria) {
+          this.categorias["no categorizado"].productos.push(prod);
+        } else {
+          if (!this.categorias[prod.categoria.nombre]) {
+            this.categorias[prod.categoria.nombre] = { categoria: prod.categoria, productos: [], show: false };
+          }
+          this.categorias[prod.categoria.nombre].productos.push(prod);
         }
-        this.categorias[prod.categoria.name].productos.push(prod);
       }
     });
     setTimeout(() => {

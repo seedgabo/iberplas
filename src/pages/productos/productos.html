@@ -3,7 +3,7 @@
     <ion-title>Productos</ion-title>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar>
+    <ion-searchbar [(ngModel)]="query" (ionInput)="filter()">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -14,32 +14,34 @@
   </div>
   <ion-list *ngIf="ready">
     <div *ngFor="let categoria of categorias | keys">
-      <ion-list-header color="light">
-        <ion-icon color="primary" name="cart" item-left></ion-icon>
-        <h2 ion-text text-capitalize>
-          {{ categoria.key }}
-        </h2>
-        <button ion-button item-right icon-only clear (click)="categoria.value.show = !categoria.value.show">
-          <ion-icon [name]="!categoria.value.show ? 'arrow-dropleft-circle' : 'arrow-dropdown-circle' "></ion-icon>
-        </button>
-      </ion-list-header>
-      <div *ngIf="categoria.value.show">
-        <ion-item *ngFor="let prod of categoria.value.productos">
-          <ion-thumbnail item-left>
-            <img [src]="prod.image_url" [alt]="prod.name">
-          </ion-thumbnail>
-          <h2 text-center ion-text color="primary">{{prod.name}}</h2>
-          <h3 text-center ion-text color="secondary">{{prod.precio | currency }}</h3>
-          <div text-center>
-            <button ion-button small clear round icon-only (click)="decrement(prod)">
-              <ion-icon name="remove-circle"></ion-icon>
-            </button>
-            <input readonly item-right type="number" class="orden" [(ngModel)]="prod.cantidad_pedidos">
-            <button ion-button round clear small icon-only (click)="increment(prod)">
-              <ion-icon name="add-circle"></ion-icon>
-            </button>
-          </div>
-        </ion-item>
+      <div *ngIf="categoria.value.productos.length > 0">
+        <ion-list-header color="light">
+          <ion-icon color="primary" name="cart" item-left></ion-icon>
+          <h2 ion-text text-capitalize>
+            {{ categoria.key }}
+          </h2>
+          <button ion-button item-right icon-only clear (click)="categoria.value.show = !categoria.value.show">
+            <ion-icon [name]="!categoria.value.show ? 'arrow-dropleft-circle' : 'arrow-dropdown-circle' "></ion-icon>
+          </button>
+        </ion-list-header>
+        <div *ngIf="categoria.value.show">
+          <ion-item *ngFor="let prod of categoria.value.productos">
+            <ion-thumbnail item-left>
+              <img [src]="prod.image_url" [alt]="prod.name">
+            </ion-thumbnail>
+            <h2 text-center ion-text color="primary">{{prod.name}}</h2>
+            <h3 text-center ion-text color="secondary">{{prod.precio | currency }}</h3>
+            <div text-center>
+              <button ion-button small clear round icon-only (click)="decrement(prod)">
+                <ion-icon name="remove-circle"></ion-icon>
+              </button>
+              <input readonly item-right type="number" class="orden" [(ngModel)]="prod.cantidad_pedidos">
+              <button ion-button round clear small icon-only (click)="increment(prod)">
+                <ion-icon name="add-circle"></ion-icon>
+              </button>
+            </div>
+          </ion-item>
+        </div>
       </div>
     </div>
   </ion-list>
