@@ -22,7 +22,7 @@ export class ProductosPage {
   ionViewDidLoad() {
     this.api.ready.then(() => {
       this.api
-        .get("productos?with[]=categoria&where[active]=1&limit=150")
+        .get("productos?with[]=categoria.image&where[active]=1&limit=150")
         .then((resp) => {
           this.productos = resp;
           this.filter();

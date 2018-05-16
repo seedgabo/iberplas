@@ -16,7 +16,9 @@
     <div *ngFor="let categoria of categorias | keys">
       <div *ngIf="categoria.value.productos.length > 0">
         <ion-list-header color="light">
-          <!-- <ion-icon color="primary" name="cart" item-left></ion-icon> -->
+          <ion-avatar item-left>
+            <img [src]="categoria.value.categoria?.image?.url" [alt]="categoria.key">
+          </ion-avatar>
           <h2 ion-text text-capitalize>
             {{ categoria.key }}
           </h2>
