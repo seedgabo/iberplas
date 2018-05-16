@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let pedido of orders">
+    <button (click)="verPedido(pedido)" ion-item *ngFor="let pedido of orders">
       <h2>
         Pedido # {{ pedido.numero_pedido }}
       </h2>
@@ -20,6 +20,6 @@
         </ion-badge>
       </h3>
       <span item-right>{{pedido.created_at | amCalendar }}</span>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>
