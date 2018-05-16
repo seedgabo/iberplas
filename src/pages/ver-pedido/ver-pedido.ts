@@ -14,8 +14,9 @@ export class VerPedidoPage {
   }
 
   ionViewDidLoad() {
+    this
   }
   close(){
-	  this.navCtrl.setRoot(HomePage);
+	  this.navCtrl.pop();
   }
 }
