@@ -14,7 +14,7 @@
   <img [src]="api.url + 'img/menu2.jpg?rand=' + rand" style="width:100%" onerror="this.style.display = 'none'" alt="">
 
 
-  <ion-fab bottom right>
+  <ion-fab bottom right *ngIf="canOrder">
     <button ion-fab color="secondary" (click)="orderAdmin()">
       <ion-icon name="add"></ion-icon>
     </button>

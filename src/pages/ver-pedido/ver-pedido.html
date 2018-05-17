@@ -1,8 +1,10 @@
 <ion-header>
 
   <ion-navbar color="secondary">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Pedido # {{pedido.numero_pedido}} </ion-title>
-
     <ion-buttons end>
       <button ion-button (click)="close()" icon-only>
         <ion-icon name="close"></ion-icon>
@@ -12,20 +14,19 @@
 </ion-header>
 
 
-<ion-content padding>
-  <h2 text-center color="secondary" text-uppercase>Pedido de {{pedido.tipo}}</h2>
+<ion-content>
+  <h3 text-center color="secondary" text-uppercase>Tipo: {{pedido.tipo}}</h3>
   <ion-list>
     <ion-item *ngFor="let prod of pedido.items">
-      <ion-avatar item-left>
+      <ion-thumbnail item-left>
         <img [src]="prod.image?.url" alt="">
-      </ion-avatar>
-      <h3>{{prod.name}}
-        <p [innerHTML]="prod.description"></p>
-      </h3>
+      </ion-thumbnail>
+      <h2 text-wrap wrap>{{prod.name}} </h2>
+      <p text-wrap wrap [innerHTML]="prod.description"></p>
       <ion-badge item-right>{{prod.cantidad_pedidos}}</ion-badge>
     </ion-item>
   </ion-list>
-  <h5 text-center ion-text color="favorite">
+  <p text-wrap wrap text-center>
     Pedido enviado a: {{pedido.direccion_envio}}
-  </h5>
+  </p>
 </ion-content>
