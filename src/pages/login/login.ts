@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, AlertController, LoadingController } from "ionic-angular";
+import { NavController, NavParams, AlertController, LoadingController, ModalController } from "ionic-angular";
 import { Api } from "../../providers/Api";
 import { HomePage } from "../home/home";
 @Component({
@@ -24,7 +24,8 @@ export class LoginPage {
     public navParams: NavParams,
     public api: Api,
     public alert: AlertController,
-    public loading: LoadingController
+    public loading: LoadingController,
+    public modal: ModalController
   ) {}
 
   ionViewDidLoad() {}
@@ -39,7 +40,11 @@ export class LoginPage {
         this.api.saveUser(response);
         this.api.saveData();
         this.api.user = response;
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage).then(() => {
+          if (this.api.password == this.api.username) {
+            this.modal.create("PasswordChangePage").present();
+          }
+        });
       })
       .catch(() => {
         loading.dismiss();

@@ -13,6 +13,15 @@
     <ion-spinner></ion-spinner>
   </div>
   <ion-list *ngIf="ready">
+    <ion-item>
+      <ion-label floating>Entidades</ion-label>
+      <ion-select [(ngModel)]="entidad_id">
+        <ion-option *ngFor="let ent of entidades" [value]="ent.id">
+          {{ent.full_name}}
+        </ion-option>
+      </ion-select>
+
+    </ion-item>
     <div *ngFor="let categoria of categorias | keys">
       <div *ngIf="categoria.value.productos.length > 0">
         <ion-list-header color="light">

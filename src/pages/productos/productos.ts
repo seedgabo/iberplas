@@ -8,9 +8,11 @@ import { Api } from "../../providers/Api";
 })
 export class ProductosPage {
   productos: any = [];
+  entidades: any = [];
   categorias = { "no categorizado": { productos: [], show: false } };
   ready = false;
   query = "";
+  entidad_id = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,6 +37,13 @@ export class ProductosPage {
             .present();
           console.error(err);
         });
+
+      this.api
+        .get("entidades")
+        .then((resp) => {
+          this.entidades = resp;
+        })
+        .catch(console.error);
     });
   }
 
@@ -104,8 +113,8 @@ export class ProductosPage {
       .post("pedidos", {
         fecha_pedido: new Date(),
         items: items,
+        entidad_id: this.entidad_id,
         user_id: this.api.user.id,
-        entidad_id: this.api.user.entidad_id,
         cliente_id: this.api.user.cliente_id || 1,
         direccion_envio: direccion_pedido
       })
