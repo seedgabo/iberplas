@@ -19,7 +19,7 @@
           {{pedido.estado}}
         </ion-badge>
       </h3>
-      <span item-right>{{pedido.created_at | amCalendar }}</span>
+      <span item-right>{{pedido.created_at | amDateFormat:'lll' }}</span>
     </button>
   </ion-list>
 </ion-content>
