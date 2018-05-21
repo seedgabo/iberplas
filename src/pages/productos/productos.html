@@ -73,7 +73,8 @@
         <button ion-button clear color="dark" full navPop>Atrás</button>
       </ion-col>
       <ion-col>
-        <button ion-button full color="secondary" (click)="order()">Ordenar</button>
+        <button [disabled]="!canOrder()" ion-button full color="secondary" (click)="order()">Ordenar</button>
+
       </ion-col>
     </ion-row>
   </ion-grid>

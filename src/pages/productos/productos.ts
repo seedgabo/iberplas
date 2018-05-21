@@ -58,27 +58,15 @@ export class ProductosPage {
   }
 
   order() {
-    this.alert
-      .create({
-        title: "Ordenar",
-        inputs: [
-          {
-            placeholder: "Direccion pedido",
-            name: "direccion_pedido",
-            type: "text"
-          }
-        ],
-        buttons: [
-          "Cancelar",
-          {
-            text: "Confirmar",
-            handler: (data) => {
-              if (data && data.direccion_pedido) this._order(data.direccion_pedido);
-            }
-          }
-        ]
-      })
-      .present();
+    var dir = "";
+    var ent = this.entidades.find((ent) => {
+      return ent.id == this.entidad_id;
+    });
+    if (ent) {
+      dir = ent.full_name;
+    }
+
+    this._order(dir);
   }
 
   total() {
@@ -153,5 +141,9 @@ export class ProductosPage {
     setTimeout(() => {
       this.ready = true;
     }, 300);
+  }
+
+  canOrder() {
+    return this.entidad_id && this.total() > 0;
   }
 }
