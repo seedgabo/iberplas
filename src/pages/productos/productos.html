@@ -20,8 +20,13 @@
           {{ent.full_name}}
         </ion-option>
       </ion-select>
-
     </ion-item>
+
+    <ion-item>
+      <ion-label>fecha de entrega</ion-label>
+      <ion-datetime [(ngModel)]="fecha_entrega" displayFormat="DD/MM/YY HH:mm" pickerFormat="DD MMM YY hh mm a"></ion-datetime>
+    </ion-item>
+
     <div *ngFor="let categoria of categorias | keys">
       <div *ngIf="categoria.value.productos.length > 0">
         <ion-list-header color="light">

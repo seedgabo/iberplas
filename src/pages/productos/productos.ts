@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from "ionic-angular";
 import { Api } from "../../providers/Api";
+import moment from "moment";
 @IonicPage()
 @Component({
   selector: "page-productos",
@@ -13,6 +14,10 @@ export class ProductosPage {
   ready = false;
   query = "";
   entidad_id = null;
+  fecha_entrega = moment()
+    .local()
+    .add(3, "hour")
+    .format("Y-M-D H:m");
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -104,7 +109,8 @@ export class ProductosPage {
         entidad_id: this.entidad_id,
         user_id: this.api.user.id,
         cliente_id: this.api.user.cliente_id || 1,
-        direccion_envio: direccion_pedido
+        direccion_envio: direccion_pedido,
+        fecha_entrega: this.fecha_entrega
       })
       .then((resp) => {
         loading.dismiss();
