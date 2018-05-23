@@ -17,7 +17,7 @@ export class ProductosPage {
   fecha_entrega = moment()
     .local()
     .add(3, "hour")
-    .format("Y-M-D H:m");
+    .format("YYYY-MM-DD HH:mm");
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -110,7 +110,9 @@ export class ProductosPage {
         user_id: this.api.user.id,
         cliente_id: this.api.user.cliente_id || 1,
         direccion_envio: direccion_pedido,
-        fecha_entrega: this.fecha_entrega
+        fecha_entrega: moment(this.fecha_entrega)
+          .local()
+          .format("YYYY-MM-DD HH:mm:ss")
       })
       .then((resp) => {
         loading.dismiss();
@@ -155,6 +157,11 @@ export class ProductosPage {
   }
 
   sendEmail(resp) {
-    // TODO: send Email Backend service
+    this.api
+      .get("test/email")
+      .then((resp) => {
+        this.alert.create({ title: "Correo Enviado", buttons: ["Ok"] }).present();
+      })
+      .catch(console.error);
   }
 }
