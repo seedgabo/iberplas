@@ -116,6 +116,7 @@ export class ProductosPage {
         loading.dismiss();
         this.navCtrl.pop();
         this.alert.create({ title: "Pedido Realizado", buttons: ["Ok"] }).present();
+        this.sendEmail(resp);
       })
       .catch((error) => {
         console.error(error);
@@ -151,5 +152,9 @@ export class ProductosPage {
 
   canOrder() {
     return this.entidad_id && this.total() > 0;
+  }
+
+  sendEmail(resp) {
+    // TODO: send Email Backend service
   }
 }
