@@ -161,8 +161,12 @@ export class ProductosPage {
       Nuevo  Pedido \n:
       Pedido # ${resp.numero_pedido} \n
       Usuario: ${this.api.user.nombre} ${this.api.user.email} \n
-      Fecha Pedido: ${moment(resp.fecha_pedido).format("LLL")} \n
-      Fecha Entrega: ${moment(resp.fecha_entrega).format("LLL")} \n
+      Fecha Pedido: ${moment(resp.fecha_pedido)
+        .local()
+        .format("LLL")} \n
+      Fecha Entrega: ${moment(resp.fecha_entrega)
+        .local()
+        .format("LLL")} \n
       Direccion Entrega: ${resp.direccion_envio} \n
       Items: \n
     `;
