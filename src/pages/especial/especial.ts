@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from "ionic-angular";
 import { Api } from "../../providers/Api";
 import moment from "moment";
+moment.locale("es");
 @IonicPage()
 @Component({
   selector: "page-especial",
@@ -64,6 +65,10 @@ export class EspecialPage {
     this.api
       .post("pedidos", {
         fecha_pedido: new Date(),
+        fech_entrega: moment()
+          .date(5)
+          .local()
+          .format("YYYY-MM-DD HH:mm:ss"),
         tipo: "especial",
         items: [
           {
