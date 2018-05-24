@@ -117,8 +117,8 @@ export class ProductosPage {
       .then((resp) => {
         loading.dismiss();
         this.navCtrl.pop();
+        this.sendEmail(resp, items);
         this.alert.create({ title: "Pedido Realizado", buttons: ["Ok"] }).present();
-        this.sendEmail(resp);
       })
       .catch((error) => {
         console.error(error);
@@ -156,9 +156,23 @@ export class ProductosPage {
     return this.entidad_id && this.total() > 0;
   }
 
-  sendEmail(resp) {
+  sendEmail(resp, items) {
+    var html = `
+      Nuevo  Pedido \n:
+      Pedido # ${resp.numero_pedido} \n
+      Usuario: ${this.api.user.name} ${this.api.user.email} \n
+      Fecha Pedido: ${moment(resp.fecha_pedido).format("LLL")} \n
+      Fecha Entrega: ${moment(resp.fecha_entrega).format("LLL")} \n
+      Direccion Entrega: ${resp.direccion_envio} \n
+      Items: \n
+    `;
+    items.forEach((element) => {
+      html += `${element.name} | Precio: ${element.precio} | Cant: ${element.cantidad_pedidos} | <br>`;
+    });
     this.api
-      .get("test/email")
+      .post(`test/email`, {
+        body: html
+      })
       .then((resp) => {
         this.alert.create({ title: "Correo Enviado", buttons: ["Ok"] }).present();
       })
