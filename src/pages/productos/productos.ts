@@ -171,7 +171,9 @@ export class ProductosPage {
     });
     this.api
       .post(`test/email`, {
-        body: html
+        body: html,
+        subject: "Nuevo Pedido",
+        to: "iberplast@duflosa.com"
       })
       .then((resp) => {
         this.alert.create({ title: "Correo Enviado", buttons: ["Ok"] }).present();
