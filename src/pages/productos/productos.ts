@@ -14,10 +14,7 @@ export class ProductosPage {
   ready = false;
   query = "";
   entidad_id = null;
-  fecha_entrega = moment()
-    .local()
-    .add(3, "hour")
-    .format("YYYY-MM-DD HH:mm");
+  fecha_entrega = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -153,7 +150,7 @@ export class ProductosPage {
   }
 
   canOrder() {
-    return this.entidad_id && this.total() > 0;
+    return this.entidad_id && this.total() > 0 && this.fecha_entrega;
   }
 
   sendEmail(resp, items) {
