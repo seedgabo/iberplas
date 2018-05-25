@@ -20,7 +20,7 @@ export class HomePage {
         .get(`users/${this.api.user.id}?with[]=roles`)
         .then((result: any) => {
           result.roles.forEach((rol) => {
-            if (rol.name == "SuperAdmin") this.canOrder = true;
+            if (rol.name == "Pedido APP") this.canOrder = true;
           });
         })
         .catch((err) => {

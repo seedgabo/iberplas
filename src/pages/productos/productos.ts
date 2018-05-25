@@ -52,6 +52,7 @@ export class ProductosPage {
   increment(prod) {
     prod.cantidad_pedidos++;
   }
+  
   decrement(prod) {
     prod.cantidad_pedidos--;
     if (prod.cantidad_pedidos < 0) {
