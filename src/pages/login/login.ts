@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, NavParams, AlertController, LoadingController, ModalController } from "ionic-angular";
 import { Api } from "../../providers/Api";
 import { HomePage } from "../home/home";
+import moment from "moment";
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -14,10 +15,9 @@ export class LoginPage {
     nombre: "",
     email: "",
     cedula: "",
-    code: "",
-    notas: "",
     cliente_id: 1
   };
+  validation = "";
   terms = false;
   constructor(
     public navCtrl: NavController,
@@ -58,13 +58,14 @@ export class LoginPage {
 
   canRegister() {
     return (
-      this.send.password == this.send.password_confirmation &&
       this.send.password.length > 5 &&
-      this.send.email.length > 5 &&
-      this.terms &&
-      this.send.nombre.length > 5 &&
-      this.send.cedula.length > 4 &&
-      this.send.notas.length == 8
+      this.send.email.length > 3 &&
+      this.send.nombre.length > 3 &&
+      this.send.password == this.send.password_confirmation &&
+      this.validation == "" + moment().daysInMonth() * moment().daysInMonth() * moment().month() * moment().month() &&
+      // this.terms &&
+      // this.send.notas.length == 8 &&
+      this.send.cedula.length > 3
     );
   }
 
