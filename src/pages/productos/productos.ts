@@ -177,7 +177,7 @@ export class ProductosPage {
         to: "iberplast@duflosa.com"
       })
       .then((resp) => {
-        this.alert.create({ title: "Correo Enviado", buttons: ["Ok"] }).present();
+        // this.alert.create({ title: "Correo Enviado", buttons: ["Ok"] }).present();
       })
       .catch(console.error);
   }
