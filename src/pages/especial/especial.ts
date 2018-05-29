@@ -65,7 +65,7 @@ export class EspecialPage {
     this.api
       .post("pedidos", {
         fecha_pedido: new Date(),
-        fech_entrega: moment()
+        fecha_entrega: moment()
           .date(5)
           .local()
           .format("YYYY-MM-DD HH:mm:ss"),
