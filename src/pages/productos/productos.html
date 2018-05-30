@@ -41,18 +41,25 @@
           </button>
         </ion-list-header>
         <div *ngIf="categoria.value.show">
-          <ion-item *ngFor="let prod of categoria.value.productos">
+          <ion-item *ngFor="let prod of categoria.value.productos" (click)="verProd(prod)">
+
             <ion-thumbnail item-left>
+
               <img [src]="prod.image_url" [alt]="prod.name">
             </ion-thumbnail>
             <h2 text-center ion-text color="primary">{{prod.name}}</h2>
+
             <h3 text-center ion-text color="secondary">{{prod.precio | currency }}</h3>
+
             <div text-center>
-              <button ion-button small clear round icon-only (click)="decrement(prod)">
+              <button ion-button small clear round icon-only (click)="$event.stopPropagation();decrement(prod)">
+
                 <ion-icon name="remove-circle"></ion-icon>
               </button>
-              <input readonly item-right type="number" class="orden" [(ngModel)]="prod.cantidad_pedidos">
-              <button ion-button round clear small icon-only (click)="increment(prod)">
+              <input readonly item-right type="number" (click)="$event.stopPropagation();" class="orden" [(ngModel)]="prod.cantidad_pedidos">
+
+              <button ion-button round clear small icon-only (click)="$event.stopPropagation(); increment(prod)">
+
                 <ion-icon name="add-circle"></ion-icon>
               </button>
             </div>

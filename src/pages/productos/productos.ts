@@ -49,10 +49,14 @@ export class ProductosPage {
     });
   }
 
+  verProd(producto) {
+    this.navCtrl.push("ItemPage", { producto: producto });
+  }
+
   increment(prod) {
     prod.cantidad_pedidos++;
   }
-  
+
   decrement(prod) {
     prod.cantidad_pedidos--;
     if (prod.cantidad_pedidos < 0) {
