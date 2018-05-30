@@ -30,7 +30,7 @@
           <button ion-button clear round danger style="font-size:16px" (click)="susPed()">
             <ion-icon name="remove-circle"></ion-icon>
           </button>
-          <input class="qty-input" type="number" max="{{producto.quantity}}" min="1" [(ngModel)]="producto.cantidad_pedidos" value="1">
+          <input class="orden" type="number" min="1" [(ngModel)]="producto.cantidad_pedidos">
           <button ion-button clear round secondary style="font-size:16px" (click)="addPed()">
             <ion-icon name="add-circle"></ion-icon>
           </button>

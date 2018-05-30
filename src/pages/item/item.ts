@@ -27,19 +27,16 @@ export class ItemPage {
   }
 
   ionViewDidLoad() {
-    this.getProducto();
+    // this.getProducto();
   }
 
   getProducto(refresher = undefined) {
     this.api
       .get("productos/" + this.producto.id + "?with[]=image&with[]=images")
-      .then((data) => {
-        var pedidos = this.producto.cantidad_pedidos;
-        this.producto = data;
-        this.producto.cantidad_pedidos = pedidos;
-        if (this.producto.data != null && !Array.isArray(this.producto.data)) {
-          this.producto.data = JSON.parse(this.producto.data);
-        }
+      .then((data: any) => {
+        this.producto.image = data.image;
+        this.producto.images = data.images;
+        this.producto.image_url = data.image_url;
         if (refresher != undefined) {
           refresher.complete();
         }
