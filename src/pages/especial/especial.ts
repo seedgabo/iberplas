@@ -67,7 +67,7 @@ export class EspecialPage {
         fecha_pedido: new Date(),
         fecha_entrega: moment()
           .date(5)
-          .local()
+          .utc()
           .format("YYYY-MM-DD HH:mm:ss"),
         tipo: "especial",
         items: [
