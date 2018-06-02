@@ -48,7 +48,6 @@ export class ProductosPage {
         .catch(console.error);
     });
   }
-
   verProd(producto) {
     this.navCtrl.push("ItemPage", { producto: producto });
   }
@@ -106,14 +105,16 @@ export class ProductosPage {
     loading.present();
     this.api
       .post("pedidos", {
-        fecha_pedido: new Date(),
+        fecha_pedido: moment()
+          .utc()
+          .format("YYYY-MM-DD HH:mm:ss"),
         items: items,
         entidad_id: this.entidad_id,
         user_id: this.api.user.id,
         cliente_id: this.api.user.cliente_id || 1,
         direccion_envio: direccion_pedido,
         fecha_entrega: moment(this.fecha_entrega)
-          .local()
+          .utc()
           .format("YYYY-MM-DD HH:mm:ss")
       })
       .then((resp) => {
