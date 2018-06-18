@@ -9,7 +9,7 @@ import moment from "moment";
 })
 export class LoginPage {
   register = false;
-  send = {
+  send: any = {
     password: "",
     password_confirmation: "",
     nombre: "",
@@ -62,7 +62,6 @@ export class LoginPage {
       this.send.email.length > 3 &&
       this.send.nombre.length > 3 &&
       this.send.password == this.send.password_confirmation &&
-      this.validation == "" + moment().daysInMonth() * moment().daysInMonth() * moment().month() * moment().month() &&
       // this.terms &&
       // this.send.notas.length == 8 &&
       this.send.cedula.length > 3
@@ -72,17 +71,24 @@ export class LoginPage {
   doRegister() {
     var loading = this.loading.create({ content: "Cargando" });
     loading.present();
+    this.send.registration_email = true;
+    this.send.active = false;
     this.api
       .post("register", this.send)
       .then((data) => {
         loading.dismiss();
-        console.log(data);
         this.api.username = this.send.email;
         this.api.password = this.send.password;
         this.api.user = data;
-        this.api.saveUser(data);
-        this.api.saveData();
-        this.navCtrl.setRoot(HomePage);
+        this.alert
+          .create({
+            title: "Usuario Enviado exitosamente",
+            message: "El usuario se podra utilizar despues de confirmar que sea correcto, (aprox. 1 hora)"
+          })
+          .present();
+        // this.api.saveUser(data);
+        // this.api.saveData();
+        // this.navCtrl.setRoot(HomePage);
       })
       .catch((err) => {
         loading.dismiss();
