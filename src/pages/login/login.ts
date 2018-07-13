@@ -9,6 +9,7 @@ import moment from "moment";
 })
 export class LoginPage {
   register = false;
+  registrationOpen = moment("2018-07-23") < moment()
   send: any = {
     password: "",
     password_confirmation: "",
