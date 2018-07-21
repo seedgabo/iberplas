@@ -9,7 +9,7 @@ import moment from "moment";
 })
 export class LoginPage {
   register = false;
-  registrationOpen = moment("2018-07-23") < moment()
+  registrationOpen = true || moment("2018-07-23") < moment();
   send: any = {
     password: "",
     password_confirmation: "",
@@ -59,13 +59,13 @@ export class LoginPage {
 
   canRegister() {
     return (
-      this.send.password.length > 5 &&
+      this.send.password.length > 3 &&
       this.send.email.length > 3 &&
       this.send.nombre.length > 3 &&
-      this.send.password == this.send.password_confirmation &&
+      this.send.password == this.send.password_confirmation
       // this.terms &&
       // this.send.notas.length == 8 &&
-      this.send.cedula.length > 3
+      // this.send.cedula.length > 3
     );
   }
 
