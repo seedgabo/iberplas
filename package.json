@@ -11,7 +11,8 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "release-android": "ionic cordova build android --prod && code-push release-cordova iberplast android -d android --mandatory",
-    "build-android": "cordova build android --release -- --password=gab23gab --keystore='./iberplast.jks' --storePassword=gab23gab --alias=iberplast"
+    "build-android": "cordova build android --release -- --password=gab23gab --keystore='./iberplast.jks' --storePassword=gab23gab --alias=iberplast",
+    "release-web": "ionic cordova build browser --prod"
   },
   "dependencies": {
     "@angular/animations": "5.2.10",
