@@ -20,7 +20,7 @@
       <button ion-button color="danger" clear full clear (click)="forgotPassword()"> Olvide mi Contraseña</button>
     </div>
 
-    <div class="register" *ngIf="register">
+    <div showWhen="android,windows"  class="register" *ngIf="register">
       <ion-item style="background:rgba(255,255,255,0.3)">
         <ion-label floating>Nombre</ion-label>
         <ion-input type="text" [(ngModel)]="send.nombre"></ion-input>
@@ -45,7 +45,7 @@
       <button ion-button color="primary" full [disabled]="!canRegister()" (click)="doRegister()"> Registrarse</button>
     </div>
 
-    <button ion-button color="secondary" *ngIf="registrationOpen" full (click)="registrarse()">{{ register ? 'Ya Registrado?' : 'Registrarse' }}</button>
+    <button showWhen="android,windows" ion-button color="secondary" *ngIf="registrationOpen" full (click)="registrarse()">{{ register ? 'Ya Registrado?' : 'Registrarse' }}</button>
 
   </div>
 
